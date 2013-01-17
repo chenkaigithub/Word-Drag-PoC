@@ -18,6 +18,9 @@
 		66041D7416A84CC400D002A9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66041D7316A84CC400D002A9 /* Default-568h@2x.png */; };
 		66041D7716A84CC400D002A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66041D7616A84CC400D002A9 /* ViewController.m */; };
 		66041D7A16A84CC400D002A9 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66041D7816A84CC400D002A9 /* ViewController.xib */; };
+		66041D8516A851CB00D002A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66041D8416A851CB00D002A9 /* QuartzCore.framework */; };
+		66F7705416A8557A00BDE35E /* BBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66041D8116A84D3B00D002A9 /* BBView.m */; };
+		66F7705616A8557F00BDE35E /* TKDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66041D8316A84D4500D002A9 /* TKDragView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,11 @@
 		66041D7516A84CC400D002A9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		66041D7616A84CC400D002A9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		66041D7916A84CC400D002A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		66041D8016A84D3B00D002A9 /* BBView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBView.h; sourceTree = "<group>"; };
+		66041D8116A84D3B00D002A9 /* BBView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBView.m; sourceTree = "<group>"; };
+		66041D8216A84D4500D002A9 /* TKDragView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKDragView.h; sourceTree = "<group>"; };
+		66041D8316A84D4500D002A9 /* TKDragView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKDragView.m; sourceTree = "<group>"; };
+		66041D8416A851CB00D002A9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66041D8516A851CB00D002A9 /* QuartzCore.framework in Frameworks */,
 				66041D5E16A84CC400D002A9 /* UIKit.framework in Frameworks */,
 				66041D6016A84CC400D002A9 /* Foundation.framework in Frameworks */,
 				66041D6216A84CC400D002A9 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +82,7 @@
 		66041D5C16A84CC400D002A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66041D8416A851CB00D002A9 /* QuartzCore.framework */,
 				66041D5D16A84CC400D002A9 /* UIKit.framework */,
 				66041D5F16A84CC400D002A9 /* Foundation.framework */,
 				66041D6116A84CC400D002A9 /* CoreGraphics.framework */,
@@ -88,6 +98,10 @@
 				66041D7516A84CC400D002A9 /* ViewController.h */,
 				66041D7616A84CC400D002A9 /* ViewController.m */,
 				66041D7816A84CC400D002A9 /* ViewController.xib */,
+				66041D8016A84D3B00D002A9 /* BBView.h */,
+				66041D8116A84D3B00D002A9 /* BBView.m */,
+				66041D8216A84D4500D002A9 /* TKDragView.h */,
+				66041D8316A84D4500D002A9 /* TKDragView.m */,
 				66041D6416A84CC400D002A9 /* Supporting Files */,
 			);
 			path = "Word Drag PoC";
@@ -176,6 +190,8 @@
 				66041D6A16A84CC400D002A9 /* main.m in Sources */,
 				66041D6E16A84CC400D002A9 /* AppDelegate.m in Sources */,
 				66041D7716A84CC400D002A9 /* ViewController.m in Sources */,
+				66F7705416A8557A00BDE35E /* BBView.m in Sources */,
+				66F7705616A8557F00BDE35E /* TKDragView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +308,7 @@
 				66041D7F16A84CC400D002A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

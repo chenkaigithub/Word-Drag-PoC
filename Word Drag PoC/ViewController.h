@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "BBView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <TKDragViewDelegate> {
+    
+    __weak IBOutlet BBView *bubbleView;
+    
+}
 
 @end
