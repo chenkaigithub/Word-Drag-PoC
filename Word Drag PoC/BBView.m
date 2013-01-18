@@ -29,7 +29,14 @@
     self.bubbleButtonArray = [@[] mutableCopy];
     self.dragViews = [@[] mutableCopy];
     
-    // First check to see if there are already buttons there. If there are then we will remove them first    
+    //Setup the draggable areas
+    NSMutableArray *goodFrames = [NSMutableArray arrayWithCapacity:strings.count];
+    
+    NSLog(@"Number of strings: %i", strings.count);
+    
+    NSMutableArray *badFrames = [NSMutableArray arrayWithCapacity:3];
+    
+    // First check to see if there are already buttons there. If there are then we will remove them first
     if (self.subviews.count > 0){
         for (UIView *subview in self.subviews) {
             if ([subview isKindOfClass:[TKDragView class]]) [subview removeFromSuperview];
@@ -87,18 +94,49 @@
         
         [self addSubview:bButton];
 
-        //Setup the draggable areas
-        NSMutableArray *goodFrames = [NSMutableArray arrayWithCapacity:3];
-        NSMutableArray *badFrames = [NSMutableArray arrayWithCapacity:3];
+        //clear goodframes from last population
+        [goodFrames removeAllObjects];
         
-        for (int i = 0; i< 3; i++) {
+        //Initialize here, we'll set in loop
+        int wordHeight = 0;
+        int largestWordWidth = 0;
+        
+        //Find the longest word!
+        for (int xx = 0; xx < strings.count; xx++) {
             
-            CGRect endFrame =   CGRectMake(6 + i * 103, 150, 100, 100);
+            // Find the size of the button, turn it into a rect
+            NSString *bub = [strings objectAtIndex:xx];
+            CGSize bSize = [bub sizeWithFont:[UIFont systemFontOfSize:fsize] constrainedToSize:CGSizeMake(MAXFLOAT, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+            CGRect buttonRect = CGRectMake(pad, pad, bSize.width + fsize, bSize.height + fsize/2);
             
-            CGRect badFrame =   CGRectMake(6 + i * 103, 290, 100, 100);
+            //Check if this is the largest word. We'll need this for the area to drag into
+            if (buttonRect.size.width > largestWordWidth) largestWordWidth = buttonRect.size.width;
+            wordHeight = buttonRect.size.height;
             
-            [goodFrames addObject:TKCGRectValue(endFrame)];
-            [badFrames addObject:TKCGRectValue(badFrame)];
+        }
+        
+        int verticalPosition = 150;
+        int horizontalPosition = 0;
+        
+        //Fill the arrays for draggable areas
+        for (int i = 0; i < strings.count; i++) {
+            
+            NSLog(@"Width: %i", largestWordWidth);
+            
+            int xCoord = (((horizontalPosition +1) * pad) + (horizontalPosition * largestWordWidth));
+            
+            if ( (xCoord + largestWordWidth + pad) > vc.view.bounds.size.width) {
+                verticalPosition = (verticalPosition + wordHeight + pad);
+                horizontalPosition = 0;
+            }
+            
+            int xNewCoord = (((horizontalPosition +1) * pad) + (horizontalPosition * largestWordWidth));
+            
+            CGRect goodFrame =   CGRectMake(xNewCoord, verticalPosition, largestWordWidth, wordHeight);
+            
+            [goodFrames addObject:TKCGRectValue(goodFrame)];
+            
+            horizontalPosition++;
             
         }
 
@@ -118,6 +156,21 @@
         // Add to the view, and to the array
         [self addSubview:dragView];
         [self.bubbleButtonArray addObject:bButton];
+    
+    }
+    
+    for (NSValue *goodFrame in goodFrames) {
+        
+        UIView *endView = [[UIView alloc] initWithFrame:TKCGRectFromValue(goodFrame)];
+        endView.layer.borderColor = [UIColor greenColor].CGColor;
+        endView.layer.borderWidth = 1.0f;
+        
+        [self addSubview:endView];
+        
+        
+        
+        NSLog(@"Total: %i\nFrame Coords: %@", goodFrames.count, NSStringFromCGRect(TKCGRectFromValue(goodFrame)));
+        
     }
     
     // Sequentially animate the buttons appearing in view

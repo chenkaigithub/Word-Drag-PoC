@@ -17,10 +17,6 @@
 
 @property (nonatomic, strong) NSMutableArray *dragViews;
 
-@property (nonatomic, strong) NSMutableArray *goodFrames;
-
-@property (nonatomic, strong) NSMutableArray *badFrames;
-
 
 -(void)fillBubbleViewWithButtons:(NSArray *)strings bgColor:(UIColor *)bgColor textColor:(UIColor *)textColor fontSize:(float)fsize viewController:(ViewController *)vc;
 -(void)addBubbleButtonsWithInterval:(float)ftime;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Lucky Gecko Apps. All rights reserved.
 //
 
+#import "TKDragView.h"
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -52,21 +53,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    bubbleStringArray = @[@"THE", @"BOY", @"ATE", @"HIS", @"SANDWICH", @"GREEDILY", @"FORK"];
+    bubbleStringArray = @[@"THE", @"BOY", @"ATE", @"HIS", @"SANDWICH", @"MONSTROSITY!!!!", @"FORK"];
     
     [self displayWords];
-    
-    for (int i = 0; i< 3; i++) {
-        
-        
-        CGRect endFrame =   CGRectMake(6 + i * 103, 150, 100, 100);
-        
-        UIView *endView = [[UIView alloc] initWithFrame:endFrame];
-        endView.layer.borderColor = [UIColor greenColor].CGColor;
-        endView.layer.borderWidth = 1.0f;
-        
-        [self.view addSubview:endView];
-    }
     
 }
 

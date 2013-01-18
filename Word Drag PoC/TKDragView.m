@@ -160,6 +160,10 @@ CGFloat TKDistanceBetweenFrames(CGRect rect1, CGRect rect2){
     [panGesture setDelegate:self];
     [self addGestureRecognizer:panGesture];
     
+    UITapGestureRecognizer *dTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dTapDetected:)];
+    [dTapGesture setDelegate:self];
+    dTapGesture.numberOfTapsRequired = 2;
+    [self addGestureRecognizer:dTapGesture];
     
     self.userInteractionEnabled = YES;
     self.opaque = NO;
@@ -250,6 +254,25 @@ CGFloat TKDistanceBetweenFrames(CGRect rect1, CGRect rect2){
 }
 
 #pragma mark - Gesture handling
+
+- (void)dTapDetected:(UITapGestureRecognizer*)gestureRecognizer{
+    
+    NSLog(@"Tap Detected!");
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+    
+        if (self.isAtEndFrame) {
+         
+            [self swapToStartPosition];
+            
+            CGRect goodFrame = TKCGRectFromValue([self.goodFramesArray objectAtIndex:currentGoodFrameIndex_]);
+            [[TKDragManager manager] dragView:self didLeaveEndFrame:goodFrame];
+            
+        }
+        
+    }
+    
+}
 
 - (void)panDetected:(UIPanGestureRecognizer*)gestureRecognizer{
     switch ([gestureRecognizer state]) {
