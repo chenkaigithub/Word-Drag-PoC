@@ -14,6 +14,13 @@
     
     __weak IBOutlet BBView *bubbleView;
     
+    NSArray *bubbleStringArray;
+    
 }
+
+@property (weak, nonatomic) BBView *bubbleView;
+
+- (IBAction)shuffleWords;
+- (void)displayWords;
 
 @end

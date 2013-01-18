@@ -138,8 +138,6 @@ CGFloat TKDistanceBetweenFrames(CGRect rect1, CGRect rect2){
           badFrames:(NSArray *)badFrames
         andDelegate:(id<TKDragViewDelegate>) delegate{
     
-    NSLog(@"StartFrame: %@", NSStringFromCGRect(startFrame));
-    
     self = [super initWithFrame:startFrame];
     
     if(!self) return nil;
@@ -153,8 +151,6 @@ CGFloat TKDistanceBetweenFrames(CGRect rect1, CGRect rect2){
     self.button = theButton;
     
     [self.button setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-    
-    NSLog(@"Button: %@", NSStringFromCGRect(self.button.bounds));
     
     [self addSubview:theButton];
     
