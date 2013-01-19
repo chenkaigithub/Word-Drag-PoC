@@ -20,20 +20,10 @@
 - (IBAction)checkAnswer {
     
     //First find the answer box!
+    UIView *answerView = [self.view viewWithTag:777];
     
-    CGRect answerBox = CGRectMake(0, 0, 0, 0);
-    
-    for (UIView *subview in bubbleView.subviews) {
-        
-        if (subview.tag == 777) {
-            
-            //This is the answer box
-            CGPoint answerLoc = [subview.superview convertPoint:subview.frame.origin toView:nil];
-            answerBox = CGRectMake(answerLoc.x, answerLoc.y, subview.bounds.size.width, subview.bounds.size.height);
-            
-        }
-        
-    }
+    CGPoint answerLoc = [answerView.superview convertPoint:answerView.frame.origin toView:nil];
+    CGRect answerBox = CGRectMake(answerLoc.x, answerLoc.y, answerView.bounds.size.width, answerView.bounds.size.height);
     
     BOOL answerBoxFull = NO;
     
