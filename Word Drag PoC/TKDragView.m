@@ -257,8 +257,6 @@ CGFloat TKDistanceBetweenFrames(CGRect rect1, CGRect rect2){
 
 - (void)dTapDetected:(UITapGestureRecognizer*)gestureRecognizer{
     
-    NSLog(@"Tap Detected!");
-    
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
     
         if (self.isAtEndFrame) {

@@ -12,13 +12,15 @@
 
 @interface ViewController : UIViewController <TKDragViewDelegate> {
     
-    __weak IBOutlet BBView *bubbleView;
+    __weak IBOutlet BBView  *bubbleView;
+    IBOutlet    UILabel     *answerIndicator;
     
     NSArray *bubbleStringArray;
     
 }
 
 @property (weak, nonatomic) BBView *bubbleView;
+@property (strong, nonatomic) UILabel *answerIndicator;
 
 - (IBAction)shuffleWords;
 - (void)displayWords;

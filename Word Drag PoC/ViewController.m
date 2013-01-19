@@ -15,7 +15,58 @@
 
 @implementation ViewController
 
-@synthesize bubbleView;
+@synthesize bubbleView, answerIndicator;
+
+- (IBAction)checkAnswer {
+    
+    //First find the answer box!
+    
+    CGRect answerBox = CGRectMake(0, 0, 0, 0);
+    
+    for (UIView *subview in bubbleView.subviews) {
+        
+        if (subview.tag == 777) {
+            
+            //This is the answer box
+            CGPoint answerLoc = [subview.superview convertPoint:subview.frame.origin toView:nil];
+            answerBox = CGRectMake(answerLoc.x, answerLoc.y, subview.bounds.size.width, subview.bounds.size.height);
+            
+        }
+        
+    }
+    
+    BOOL answerBoxFull = NO;
+    
+    for (TKDragView *dragView in bubbleView.dragViews) {
+        
+        CGPoint dragViewLoc = [dragView.superview convertPoint:dragView.frame.origin toView:nil];
+        
+        CGRect dragViewRect = CGRectMake(dragViewLoc.x, dragViewLoc.y, dragView.bounds.size.width, dragView.bounds.size.height);
+        
+        if (CGRectEqualToRect(answerBox, dragViewRect)) {
+            
+            answerBoxFull = YES;
+            
+            if ([dragView.button.titleLabel.text isEqualToString:@"FORK"]) {
+                answerIndicator.text = @"Correct!";
+                answerIndicator.textColor = [UIColor greenColor];
+            } else {
+                answerIndicator.text = @"WRONG!";
+                answerIndicator.textColor = [UIColor redColor];
+            }
+            
+        }
+        
+    }
+    
+    if (!answerBoxFull) {
+        
+        answerIndicator.text = @"No Answer =(";
+        answerIndicator.textColor = [UIColor grayColor];
+        
+    }
+    
+}
 
 - (IBAction)shuffleWords {
     
@@ -44,8 +95,6 @@
     // Now make them sucka's.
     [bubbleView fillBubbleViewWithButtons:bubbleStringArray bgColor:bgColor textColor:textColor fontSize:18 viewController:self];
     
-    NSLog(@"Buttons refreshed");
-    
 }
 
 - (void)viewDidLoad
@@ -55,7 +104,7 @@
     
     bubbleStringArray = @[@"THE", @"BOY", @"ATE", @"HIS", @"SANDWICH", @"MONSTROSITY!!!!", @"FORK"];
     
-    [self displayWords];
+    [self shuffleWords];
     
 }
 

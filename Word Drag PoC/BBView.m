@@ -32,8 +32,6 @@
     //Setup the draggable areas
     NSMutableArray *goodFrames = [NSMutableArray arrayWithCapacity:strings.count];
     
-    NSLog(@"Number of strings: %i", strings.count);
-    
     NSMutableArray *badFrames = [NSMutableArray arrayWithCapacity:3];
     
     // First check to see if there are already buttons there. If there are then we will remove them first
@@ -115,13 +113,11 @@
             
         }
         
-        int verticalPosition = 150;
+        int verticalPosition = 130;
         int horizontalPosition = 0;
         
         //Fill the arrays for draggable areas
         for (int i = 0; i < strings.count; i++) {
-            
-            NSLog(@"Width: %i", largestWordWidth);
             
             int xCoord = (((horizontalPosition +1) * pad) + (horizontalPosition * largestWordWidth));
             
@@ -159,26 +155,36 @@
     
     }
     
-    for (NSValue *goodFrame in goodFrames) {
+    for (int i = 0; i < goodFrames.count; i++) {
         
-        UIView *endView = [[UIView alloc] initWithFrame:TKCGRectFromValue(goodFrame)];
-        endView.layer.borderColor = [UIColor greenColor].CGColor;
-        endView.layer.borderWidth = 1.0f;
-        
-        [self addSubview:endView];
-        
-        
-        
-        NSLog(@"Total: %i\nFrame Coords: %@", goodFrames.count, NSStringFromCGRect(TKCGRectFromValue(goodFrame)));
+        //catch last frame to use as answer box
+        if (i == (goodFrames.count - 1)) {
+            
+            NSValue *goodFrame = [goodFrames objectAtIndex:i];
+            UIView *endView = [[UIView alloc] initWithFrame:TKCGRectFromValue(goodFrame)];
+            endView.layer.borderColor = [UIColor redColor].CGColor;
+            endView.layer.borderWidth = 1.0f;
+            endView.tag = 777;
+            
+            [self addSubview:endView];
+
+        } else {
+            
+            NSValue *goodFrame = [goodFrames objectAtIndex:i];
+            UIView *endView = [[UIView alloc] initWithFrame:TKCGRectFromValue(goodFrame)];
+            endView.layer.borderColor = [UIColor greenColor].CGColor;
+            endView.layer.borderWidth = 1.0f;
+            
+            [self addSubview:endView];
+            
+        }
         
     }
     
     // Sequentially animate the buttons appearing in view
     // -- This is the interval between each button animating, not overall span
     // -- I recommend 0.034 for an nice, smooth transition
-    [self addBubbleButtonsWithInterval:0.034];
-    
-    NSLog(@"Buttons finished");
+    [self addBubbleButtonsWithInterval:0.084];
 }
 
 
